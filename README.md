@@ -4,6 +4,10 @@ I built this printer from a Voron 2.4r2 kit and have been correcting problems wi
 
 The frame is badly skewed, and the Shake&Tune plots aren't pretty. I like to print fast, so getting the frame square comes first. I'm considering pinning the corners while it's apart.
 
+## Repository status
+
+This is an ongoing build and rebuild log. Hardware notes and upgrade plans are available now; configuration files and photos will follow when I'm back at the printer.
+
 ## Where it stands
 
 I'm running Stealthburner with a Galileo2 extruder, CAN-connected electronics, and eddy-current probing. The FAN0 MOSFET (AO3400/A) on the toolhead board failed when I removed the Stealthburner cover with the power still on (oops), so I'm waiting for a replacement MOSFET.
