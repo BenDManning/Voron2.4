@@ -56,4 +56,6 @@ The [upgrade roadmap](docs/upgrades.md) has the project links and reasons for th
 
 ## Toolhead board repair
 
-The FAN0 MOSFET, AO3400/A, failed on the FLY SB2040 Pro Max V3. I'm waiting for a replacement MOSFET.
+I damaged the FAN0 MOSFET, AO3400/A, on the toolhead fan board during an attempted board swap with power still connected. Replacement components are ordered; the repair is pending. Lesson learned: fully disconnect power before swapping boards.
+
+The [repair photo and build history](docs/build-history.md#toolhead-fan0-mosfet) document the damage, along with earlier failures and the electronics-bay wiring progression.

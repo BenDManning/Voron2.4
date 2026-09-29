@@ -6,11 +6,19 @@ The frame is badly skewed, and the Shake&Tune plots aren't pretty. I like to pri
 
 ## Repository status
 
-This is an ongoing build and rebuild log. Hardware notes and upgrade plans are available now; configuration files and photos will follow when I'm back at the printer.
+This is an ongoing build and rebuild log. Hardware notes, upgrade plans, and a [photo log of the wiring progression and repairs](docs/build-history.md) are available now. Configuration files are still to come.
 
 ## Where it stands
 
-I'm running Stealthburner with a Galileo2 extruder, CAN-connected electronics, and eddy-current probing. The FAN0 MOSFET (AO3400/A) on the toolhead board failed when I removed the Stealthburner cover with the power still on (oops), so I'm waiting for a replacement MOSFET.
+I'm running Stealthburner with a Galileo2 extruder, CAN-connected electronics, and eddy-current probing. I damaged the FAN0 MOSFET (AO3400/A) during an attempted board swap with power still connected (oops). Replacement components are ordered; the repair is pending.
+
+![Current Stealthburner toolhead inside the printer](docs/images/current-stealthburner-toolhead.jpg)
+
+*Current toolhead ahead of the rebuild.*
+
+![Current electronics bay with sleeved harnesses and DIN-rail terminal blocks](docs/images/electronics-03-current.jpg)
+
+*Current electronics bay, September 2026. The [photo log](docs/build-history.md) shows the earlier wiring and repair history.*
 
 | Component | Current setup |
 | --- | --- |
@@ -33,6 +41,7 @@ I also have all the components for an enclosed Box Turtle MMU. That brings filam
 
 - [Hardware notes](HARDWARE-NOTES.md)
 - [Upgrade history and rebuild plans](docs/upgrades.md)
+- [Build photos, wiring progression, and repairs](docs/build-history.md)
 
 ## License
 
