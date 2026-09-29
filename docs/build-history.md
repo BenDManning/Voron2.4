@@ -50,7 +50,7 @@ A failed print kept extruding for an unknown amount of time and left a large bui
 
 An electrical arc damaged the stepper driver and surrounding mainboard area, leaving the printer inoperative. Poor wiring in the electronics compartment was the suspected cause, though the exact fault wasn't confirmed.
 
-**Outcome:** I still need to confirm whether I replaced that mainboard. The photos show the damage; they don't establish that the board remained usable.
+**Outcome:** I replaced the damaged mainboard.
 
 ### Toolhead FAN0 MOSFET
 
