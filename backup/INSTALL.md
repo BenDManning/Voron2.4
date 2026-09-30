@@ -131,7 +131,7 @@ It can already contain configuration or be a new directory.
 
 Choose the full commit ID of the snapshot you want from the private repository's
 GitHub history. Connect over SSH to the printer computer as the configuration owner
-(`ben` on this printer), not through the Mainsail G-code console. Run from any directory:
+(`voron` on this printer), not through the Mainsail G-code console. Run from any directory:
 
 ```sh
 python3 ~/.local/lib/printer-git-backup/restore_snapshot.py restore \

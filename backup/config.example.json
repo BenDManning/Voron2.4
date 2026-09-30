@@ -1,11 +1,11 @@
 {
-  "source": "/home/ben/printer_data/config",
-  "state": "/home/ben/.local/state/printer-git-backup",
+  "source": "/home/voron/printer_data/config",
+  "state": "/home/voron/.local/state/printer-git-backup",
   "roots": ["printer.cfg", "moonraker.conf", "KlipperScreen.conf", "mainsail.cfg"],
   "directories": ["hardware", "macros", "addons", "machine"],
   "private_exclusions": ["macros/local-only.conf"],
   "vendor_map": {
-    "mainsail.cfg": "/home/ben/mainsail-config/client.cfg"
+    "mainsail.cfg": "/home/voron/mainsail-config/client.cfg"
   },
   "replacements": [
     {"path": "moonraker.conf", "section": "notifier example", "key": "url", "value": "REDACTED"},
@@ -18,14 +18,14 @@
     "public": {
       "url": "git@github.com:OWNER/PUBLIC-REPOSITORY.git",
       "branch": "main",
-      "ssh_key": "/home/ben/.config/printer-git-backup/public-deploy-key",
-      "known_hosts": "/home/ben/.config/printer-git-backup/known_hosts"
+      "ssh_key": "/home/voron/.config/printer-git-backup/public-deploy-key",
+      "known_hosts": "/home/voron/.config/printer-git-backup/known_hosts"
     },
     "private": {
       "url": "git@github.com:OWNER/PRIVATE-RECOVERY.git",
       "branch": "main",
-      "ssh_key": "/home/ben/.config/printer-git-backup/private-deploy-key",
-      "known_hosts": "/home/ben/.config/printer-git-backup/known_hosts"
+      "ssh_key": "/home/voron/.config/printer-git-backup/private-deploy-key",
+      "known_hosts": "/home/voron/.config/printer-git-backup/known_hosts"
     }
   }
 }
