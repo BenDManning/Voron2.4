@@ -1,0 +1,27 @@
+# Local working material and exported snapshots
+/.local/
+/config-[0-9]*/
+*.zip
+*.tar.gz
+
+# Credentials and private recovery files belong outside this repository
+.env
+.env.*
+!.env.example
+*.secrets
+secrets.conf
+*.pem
+*.key
+id_ed25519
+id_rsa
+
+# Generated files
+__pycache__/
+*.py[cod]
+*.log
+*.swp
+*.tmp
+*.bak
+*.bkp
+/config/config_backups/
+/config/printer-[0-9]*_[0-9]*.cfg

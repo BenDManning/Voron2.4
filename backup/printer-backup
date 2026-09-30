@@ -1,0 +1,4 @@
+#!/bin/sh
+# Uses the printer user's unpublished settings, not a config in this repo.
+exec python3 "$HOME/.local/lib/printer-git-backup/printer_snapshot.py" \
+  --config "$HOME/.config/printer-git-backup/settings.json" "$@"

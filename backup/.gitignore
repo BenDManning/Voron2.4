@@ -1,0 +1,5 @@
+__pycache__/
+.test-*/
+implementation-evidence.txt
+settings.json
+*.local.json

@@ -1,0 +1,31 @@
+{
+  "source": "/home/ben/printer_data/config",
+  "state": "/home/ben/.local/state/printer-git-backup",
+  "roots": ["printer.cfg", "moonraker.conf", "KlipperScreen.conf", "mainsail.cfg"],
+  "directories": ["hardware", "macros", "addons", "machine"],
+  "private_exclusions": ["macros/local-only.conf"],
+  "vendor_map": {
+    "mainsail.cfg": "/home/ben/mainsail-config/client.cfg"
+  },
+  "replacements": [
+    {"path": "moonraker.conf", "section": "notifier example", "key": "url", "value": "REDACTED"},
+    {"path": "moonraker.conf", "section": "example", "key": "password", "value": "REDACTED"}
+  ],
+  "quiet_seconds": 60,
+  "poll_seconds": 5,
+  "reconcile_seconds": 300,
+  "repositories": {
+    "public": {
+      "url": "git@github.com:OWNER/PUBLIC-REPOSITORY.git",
+      "branch": "main",
+      "ssh_key": "/home/ben/.config/printer-git-backup/public-deploy-key",
+      "known_hosts": "/home/ben/.config/printer-git-backup/known_hosts"
+    },
+    "private": {
+      "url": "git@github.com:OWNER/PRIVATE-RECOVERY.git",
+      "branch": "main",
+      "ssh_key": "/home/ben/.config/printer-git-backup/private-deploy-key",
+      "known_hosts": "/home/ben/.config/printer-git-backup/known_hosts"
+    }
+  }
+}

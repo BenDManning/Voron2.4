@@ -1,0 +1,19 @@
+# User service: ~/.config/systemd/user/printer-git-backup.service
+# Copy the two Python scripts to ~/.local/lib/printer-git-backup/ first.
+# No timer: the supervised process polls and reconciles internally.
+[Unit]
+Description=One-way printer configuration Git snapshots
+After=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 %h/.local/lib/printer-git-backup/printer_snapshot.py --config %h/.config/printer-git-backup/settings.json watch
+Restart=on-failure
+RestartSec=15
+UMask=0077
+NoNewPrivileges=true
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=default.target
