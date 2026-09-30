@@ -2,8 +2,9 @@
 
 The watcher is installed on the printer. Public and private uploads have been
 read back from GitHub, and a private recovery export has been checked byte for byte.
-The printer is authoritative. These scripts never pull into its configuration,
-restart firmware, or restore over an existing directory.
+The printer is authoritative. Automatic backups never pull into its configuration
+or restart firmware. The installed restore command below changes configuration
+only after an explicit preview and confirmation.
 
 ## Prerequisites and setup
 
@@ -122,28 +123,61 @@ succeed; there is no recovery-exception bypass. Only saved cfg/conf files and an
 optional dependency manifest are covered—not firmware, databases, packages,
 credentials outside reviewed config, or a full OS image.
 
-## Manual recovery export (tested with disposable bare repositories)
+## Restore configuration from GitHub
 
-Clone the separate private recovery repository using your unpublished settings.
-Review its commit history and choose a **full commit object ID**, then run:
+Use the same command to undo a configuration change or recover your configuration
+after a reinstall. The destination is `source` in your unpublished settings file.
+It can already contain configuration or be a new directory.
+
+Choose the full commit ID of the snapshot you want from the private repository's
+GitHub history. Connect over SSH to the printer computer as the configuration owner
+(`ben` on this printer), not through the Mainsail G-code console. Run from any directory:
+
+```sh
+python3 ~/.local/lib/printer-git-backup/restore_snapshot.py restore \
+  --config ~/.config/printer-git-backup/settings.json \
+  --commit FULL_COMMIT_ID
+```
+
+The command fetches the selected snapshot, shows which config files will be added,
+replaced or deleted, and asks you to type `yes`. Anything else cancels without
+changing the configuration. Secret values are not printed. The private repository
+and SSH credentials come from settings; they do not belong in public examples.
+
+Before confirming, finish or cancel any print and stop `klipper.service` and
+`moonraker.service`. The script checks that they are stopped, pauses backups under
+the watcher's lock, saves the current directory as `before.tar`, then restores only
+the approved configuration files. It leaves unrelated files alone and refuses
+changes made since the preview. The location of the saved copy is printed.
+
+Check the restored files, restart the services when ready, and explicitly resume
+backups with `~/.local/bin/printer-backup resume`. Nothing restarts or resumes by
+itself. This is configuration recovery only, not a software or hardware rebuild.
+
+An approved vendor symlink whose contents exactly match the snapshot is preserved.
+Other managed symlinks are refused rather than modifying their external targets. If applying fails partway, keep the saved copy and leave services
+stopped while recovering the affected files. The saved copy supports manual undo;
+there is no automatic undo command. Do not extract it blindly over later edits.
+
+Add `--repo /path/to/local/recovery-checkout` for offline use. The old export-only
+command remains available and never changes the live configuration:
 
 ```sh
 python3 backup/restore_snapshot.py --repo /path/to/local/recovery-checkout \
-  --commit FULL_REVIEWED_COMMIT_ID --destination /path/to/NEW-review-directory
+  --commit FULL_COMMIT_ID --destination /path/to/NEW-directory
 ```
 
-The destination must not exist. The command exports the chosen `config/` tree as
-regular owner-readable files, rejects Git symlinks/submodules, and leaves live
-printer files untouched. Inspect and compare the export before any separately
-planned manual restoration. A failed export may leave a partial review directory;
-do not use it as a complete recovery. Public exports contain placeholders and
-are not equivalent to the private originals.
+The restore command is installed on the printer. All 67 tests passed there using
+disposable repositories and directories. Fetching an actual private GitHub snapshot
+and previewing it against the live config also passed, including preservation of the
+Mainsail vendor link. Installation was read back and verified. No live restore was
+applied, and the configuration and running printer services were left unchanged.
 
 ## Tests
 
 ```sh
 cd backup
-python3 -B -m unittest -v test_snapshot test_metrics
+python3 -B -m unittest -v test_snapshot test_metrics test_restore
 ```
 
 Tests create and remove disposable local bare Git remotes beneath `backup/`.

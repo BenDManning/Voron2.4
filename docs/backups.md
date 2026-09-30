@@ -26,10 +26,25 @@ The script has `pause`, `resume`, `now` and `status` commands. `now` refuses to 
 
 See [installation and commands](../backup/INSTALL.md) for settings, service setup and recovery instructions. The built-in secret scanner is a useful check, not a guarantee that an arbitrary file is safe to publish. Known sensitive settings need explicit replacement rules; new integrations need review.
 
-## What recovery needs
+## Restoring configuration
 
-A configuration snapshot is not an image of the printer's operating system. Recovery also needs the right Kalico version, plugin and vendor-file dependencies, and compatible MCU firmware. The public copy deliberately omits private settings, so it cannot replace the private recovery copy.
+I use the same restore command for two situations: undoing a config change, or
+getting my config back after reinstalling the printer computer. This is just the
+printer configuration—not board firmware or a hardware rebuild.
 
-The private dependency manifest records software Git revisions and vendor symlink targets. The snapshot stores the Mainsail vendor config as a regular file, so the recovery export does not depend on a working symlink. The original vendor license is preserved in this repository.
+1. Choose a saved version from the private repository's GitHub history.
+2. Run the restore command and review which files will change.
+3. Confirm the restore. It saves the current config locally before replacing it.
 
-Restoring into a separate directory comes first; replacing live configuration or restarting the printer is a deliberate manual step. A snapshot records saved files, not a promise that every experiment in it has been tested on the hardware. The recovery check does not test MCU flashing or a full operating-system rebuild.
+The private repository is used because public snapshots can contain redacted
+settings. Only approved configuration files are restored; unrelated files stay
+untouched. Files no longer present in the chosen snapshot are removed from the
+managed set, so newer macros do not remain active by accident.
+
+Do this with no print in progress and Klipper/Moonraker stopped. Backups stay
+paused until you have checked the restored config and explicitly resume them.
+The selected version then becomes a new backup entry; newer Git history is not
+erased. Restoring saved files does not mean they were a tested, working setup.
+
+The restore command is installed on the printer computer. Run it over SSH, not in
+the G-code console. See [the restore command](../backup/INSTALL.md#restore-configuration-from-github).
